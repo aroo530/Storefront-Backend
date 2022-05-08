@@ -1,0 +1,16 @@
+{
+  "dev": {
+    "driver": "pg",
+    "host": "localhost",
+    "database": "shop",
+    "user": "aroo",
+    "password": "0096"
+  },
+  "test": {
+    "driver": "pg",
+    "host": "localhost",
+    "database": "shop_test",
+    "user": "aroo",
+    "password": "0096"
+  }
+}
