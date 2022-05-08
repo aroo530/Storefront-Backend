@@ -10,7 +10,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const ROUNDS = Number(process.env.SALT_ROUNDS);
-const BCRYPT_PASSWORD = process.env.BCRYPT_PASSWORD;
+const BCRYPT_PASSWORD = String(process.env.BCRYPT_PASSWORD);
 dotenv_1.default.config();
 const operations = new users_1.UserOperations();
 const getUser = async (req, res) => {

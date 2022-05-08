@@ -3,6 +3,7 @@ import { User, UserOperations } from '../models/users';
 import express, { Request, Response } from 'express';
 import { verifyAuthToken } from '../middleware/verifyToken';
 import { Product, ProductOperations } from '../models/products';
+import { Cart } from '../models/carts';
 
 const operations: OrderOperations = new OrderOperations();
 const userOperations: UserOperations = new UserOperations();
@@ -65,7 +66,7 @@ const addProductToOrder = async (
     const product: Product = await productOperations.getProduct(
         req.body.product_name
     );
-    const updatedOrder: Order = await operations.addProductToOrder(
+    const updatedOrder: Cart = await operations.addProductToOrder(
         order.id!,
         product.id!,
         req.body.quantity
