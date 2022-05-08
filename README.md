@@ -9,7 +9,7 @@ from postman:
     import
     link 
     then -> continue
-    import 
+    import
 
 I won't upload he dotenv file to github
 I used ESLINT but found weird errors so I turned it off

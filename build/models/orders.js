@@ -10,7 +10,7 @@ class OrderOperations {
     async addProductToOrder(order_id, productId, quantity) {
         try {
             const connection = await database_1.default.connect();
-            const result = await database_1.default.query("INSERT INTO carts (order_id, product_id, quantity) VALUES ($1, $2, $3) RETURNING *", [order_id, productId, quantity]);
+            const result = await database_1.default.query('INSERT INTO carts (order_id, product_id, quantity) VALUES ($1, $2, $3) RETURNING *', [order_id, productId, quantity]);
             connection.release();
             return result.rows[0];
         }
@@ -23,7 +23,7 @@ class OrderOperations {
     async getOrder(user_id) {
         try {
             const connection = await database_1.default.connect();
-            const result = await database_1.default.query("SELECT * FROM orders WHERE user_id = $1", [user_id]);
+            const result = await database_1.default.query('SELECT * FROM orders WHERE user_id = $1', [user_id]);
             connection.release();
             return result.rows[0];
         }
@@ -36,7 +36,7 @@ class OrderOperations {
     async getAllOrders() {
         try {
             const connection = await database_1.default.connect();
-            const result = await database_1.default.query("SELECT user_id, status FROM orders");
+            const result = await database_1.default.query('SELECT user_id, status FROM orders');
             connection.release();
             return result.rows;
         }
@@ -49,7 +49,7 @@ class OrderOperations {
     async createOrder(tempOrder) {
         try {
             const connection = await database_1.default.connect();
-            const result = await database_1.default.query("INSERT INTO orders (user_id,status) VALUES ($1, $2) RETURNING *", [tempOrder.user_id, tempOrder.status]);
+            const result = await database_1.default.query('INSERT INTO orders (user_id,status) VALUES ($1, $2) RETURNING *', [tempOrder.user_id, tempOrder.status]);
             connection.release();
             return result.rows[0];
         }
@@ -62,7 +62,7 @@ class OrderOperations {
     async updateOrderStatus(tempOrder) {
         try {
             const connection = await database_1.default.connect();
-            const result = await database_1.default.query("UPDATE orders SET user_id = $1, status = $2 WHERE user_id = $1 RETURNING *", [tempOrder.user_id, tempOrder.status]);
+            const result = await database_1.default.query('UPDATE orders SET user_id = $1, status = $2 WHERE user_id = $1 RETURNING *', [tempOrder.user_id, tempOrder.status]);
             connection.release();
             return result.rows[0];
         }
@@ -75,7 +75,7 @@ class OrderOperations {
     async deleteOrder(user_id) {
         try {
             const connection = await database_1.default.connect();
-            const result = await database_1.default.query("DELETE FROM orders WHERE user_id = $1 RETURNING user_id, status", [user_id]);
+            const result = await database_1.default.query('DELETE FROM orders WHERE user_id = $1 RETURNING user_id, status', [user_id]);
             connection.release();
             return result.rows[0];
         }

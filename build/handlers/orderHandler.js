@@ -26,7 +26,7 @@ const createOrder = async (req, res) => {
         res.json(newOrder);
     }
     else {
-        res.status(404).json({ message: "User not found" });
+        res.status(404).json({ message: 'User not found' });
     }
 };
 const updateOrderStatus = async (req, res) => {
@@ -39,7 +39,7 @@ const updateOrderStatus = async (req, res) => {
 const deleteOrder = async (req, res) => {
     const getId = await userOperations.getIdByFirstName(req.params.user_id);
     await operations.deleteOrder(getId.id);
-    res.json("Order deleted");
+    res.json('Order deleted');
 };
 const addProductToOrder = async (req, res) => {
     //we will get the order id from the user id
@@ -52,19 +52,19 @@ const addProductToOrder = async (req, res) => {
 const checkStatus = async (req, res, next) => {
     const user = await userOperations.getIdByFirstName(req.body.user_id);
     const order = await operations.getOrder(user.id);
-    if (order.status === "active") {
+    if (order.status === 'active') {
         next();
     }
     else {
-        res.status(400).send("Complete orders cannot be updated");
+        res.status(400).send('Complete orders cannot be updated');
     }
 };
 const orderOperationsRouts = (app) => {
-    app.get("/orders/:user_id", getOrder);
-    app.get("/orders", getOrders);
-    app.post("/orders", verifyToken_1.verifyAuthToken, createOrder);
-    app.post("/orders/:user_id/products", verifyToken_1.verifyAuthToken, addProductToOrder);
-    app.put("/orders", verifyToken_1.verifyAuthToken, checkStatus, updateOrderStatus);
-    app.delete("/orders/:user_id", verifyToken_1.verifyAuthToken, deleteOrder);
+    app.get('/orders/:user_id', getOrder);
+    app.get('/orders', getOrders);
+    app.post('/orders', verifyToken_1.verifyAuthToken, createOrder);
+    app.post('/orders/:user_id/products', verifyToken_1.verifyAuthToken, addProductToOrder);
+    app.put('/orders', verifyToken_1.verifyAuthToken, checkStatus, updateOrderStatus);
+    app.delete('/orders/:user_id', verifyToken_1.verifyAuthToken, deleteOrder);
 };
 exports.orderOperationsRouts = orderOperationsRouts;

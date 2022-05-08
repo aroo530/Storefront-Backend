@@ -31,14 +31,14 @@ const updateProduct = async (_req, res) => {
 const deleteProduct = async (req, res) => {
     const name = req.params.name;
     const product = await operations.deleteProduct(name);
-    res.json("Product deleted");
+    res.json('Product deleted');
 };
 const productOperationsRouts = (app) => {
-    app.get("/products/:name", getProduct);
-    app.get("/products", getProducts);
-    app.get("/products/category/:category", getProductsByCategory);
-    app.post("/products", verifyToken_1.verifyAuthToken, createProduct);
-    app.put("/products", verifyToken_1.verifyAuthToken, updateProduct);
-    app.delete("/products/:name", verifyToken_1.verifyAuthToken, deleteProduct);
+    app.get('/products/:name', getProduct);
+    app.get('/products', getProducts);
+    app.get('/products/category/:category', getProductsByCategory);
+    app.post('/products', verifyToken_1.verifyAuthToken, createProduct);
+    app.put('/products', verifyToken_1.verifyAuthToken, updateProduct);
+    app.delete('/products/:name', verifyToken_1.verifyAuthToken, deleteProduct);
 };
 exports.productOperationsRouts = productOperationsRouts;

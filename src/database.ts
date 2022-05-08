@@ -14,7 +14,7 @@ const {
     TEST_POSTGRES_DB,
 } = process.env;
 
-// console.log(`${ENV} from db.ts`);
+console.log(`${ENV} from db.ts`);
 
 if (ENV === 'dev') {
     client = new Pool({

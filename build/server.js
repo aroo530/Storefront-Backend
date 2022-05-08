@@ -8,7 +8,7 @@ const userHandler_1 = require("./handlers/userHandler");
 const productHandler_1 = require("./handlers/productHandler");
 const orderHandler_1 = require("./handlers/orderHandler");
 const app = (0, express_1.default)();
-const address = "http://localhost:3000";
+const address = 'http://localhost:3000';
 app.use(body_parser_1.default.json());
 app.get('/', function (req, res) {
     res.send('Hello World!');

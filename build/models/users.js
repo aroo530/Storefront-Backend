@@ -11,7 +11,7 @@ class UserOperations {
     async getIdByFirstName(first_name) {
         try {
             const connection = await database_1.default.connect();
-            const result = await connection.query("SELECT id FROM users WHERE first_name = $1", [first_name]);
+            const result = await connection.query('SELECT id FROM users WHERE first_name = $1', [first_name]);
             await connection.release();
             return result.rows[0];
         }
@@ -23,7 +23,7 @@ class UserOperations {
     async getUser(first_name) {
         try {
             const connection = await database_1.default.connect();
-            const result = await connection.query("SELECT * FROM users WHERE first_name = $1", [first_name]);
+            const result = await connection.query('SELECT * FROM users WHERE first_name = $1', [first_name]);
             await connection.release();
             return result.rows[0];
         }
@@ -35,7 +35,7 @@ class UserOperations {
     async getUsers() {
         try {
             const connection = await database_1.default.connect();
-            const result = await connection.query("SELECT * FROM users");
+            const result = await connection.query('SELECT * FROM users');
             await connection.release();
             return result.rows;
         }
@@ -47,7 +47,7 @@ class UserOperations {
     async createUser(newUser) {
         try {
             const connection = await database_1.default.connect();
-            const result = await connection.query("INSERT INTO users (first_name, last_name, password) VALUES ($1, $2, $3) RETURNING *", [newUser.first_name, newUser.last_name, newUser.password]);
+            const result = await connection.query('INSERT INTO users (first_name, last_name, password) VALUES ($1, $2, $3) RETURNING *', [newUser.first_name, newUser.last_name, newUser.password]);
             // console.log(result.rows[0]);
             await connection.release();
             return result.rows[0];
@@ -59,14 +59,14 @@ class UserOperations {
     }
     async updateUser(password, first_name) {
         const connection = await database_1.default.connect();
-        const result = await connection.query("UPDATE users SET password = $1 WHERE first_name = $2 RETURNING *", [password, first_name]);
+        const result = await connection.query('UPDATE users SET password = $1 WHERE first_name = $2 RETURNING *', [password, first_name]);
         await connection.release();
         return result.rows[0];
     }
     async deleteUser(first_name) {
         const connection = await database_1.default.connect();
         try {
-            const result = await connection.query("DELETE FROM users WHERE first_name = $1 RETURNING *", [first_name]);
+            const result = await connection.query('DELETE FROM users WHERE first_name = $1 RETURNING *', [first_name]);
             await connection.release();
             return result.rows[0];
         }

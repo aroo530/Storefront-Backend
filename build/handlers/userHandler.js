@@ -49,15 +49,15 @@ const login = async (req, res) => {
                 res.json(await createToken(userFound));
             }
             else {
-                res.status(401).json("Password is incorrect");
+                res.status(401).json('Password is incorrect');
             }
         }
         else {
-            res.status(404).json("User not found");
+            res.status(404).json('User not found');
         }
     }
     catch (error) {
-        res.status(500).json({ message: "Something went wrong" });
+        res.status(500).json({ message: 'Something went wrong' });
     }
 };
 const updateUser = async (req, res) => {
@@ -70,20 +70,20 @@ const deleteUser = async (req, res) => {
     try {
         const first_name = req.params.first_name;
         await operations.deleteUser(first_name);
-        res.json("User deleted");
+        res.json('User deleted');
     }
     catch (error) {
         // console.log(error);
-        res.status(500).json({ message: "Something went wrong" });
+        res.status(500).json({ message: 'Something went wrong' });
     }
 };
 const userOperaionsRoutes = (app) => {
-    app.get("/users/:first_name", getUser);
-    app.get("/users", getUsers);
-    app.post("/users/signup", createUser);
-    app.post("/users/login", login);
-    app.put("/users", verifyToken_1.verifyAuthToken, updateUser);
-    app.delete("/users/:first_name", verifyToken_1.verifyAuthToken, deleteUser);
+    app.get('/users/:first_name', getUser);
+    app.get('/users', getUsers);
+    app.post('/users/signup', createUser);
+    app.post('/users/login', login);
+    app.put('/users', verifyToken_1.verifyAuthToken, updateUser);
+    app.delete('/users/:first_name', verifyToken_1.verifyAuthToken, deleteUser);
 };
 exports.userOperaionsRoutes = userOperaionsRoutes;
 const createToken = async (user) => {

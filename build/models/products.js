@@ -10,7 +10,7 @@ class ProductOperations {
     async getProduct(name) {
         try {
             const connection = await database_1.default.connect();
-            const result = await database_1.default.query("SELECT * FROM products WHERE name = $1", [name]);
+            const result = await database_1.default.query('SELECT * FROM products WHERE name = $1', [name]);
             connection.release();
             return result.rows[0];
         }
@@ -22,7 +22,7 @@ class ProductOperations {
     async getProductsByCategory(category) {
         try {
             const connection = await database_1.default.connect();
-            const result = await database_1.default.query("SELECT * FROM products WHERE category = $1", [category]);
+            const result = await database_1.default.query('SELECT * FROM products WHERE category = $1', [category]);
             connection.release();
             return result.rows;
         }
@@ -34,7 +34,7 @@ class ProductOperations {
     async getAllProducts() {
         try {
             const connection = await database_1.default.connect();
-            const result = await database_1.default.query("SELECT * FROM products");
+            const result = await database_1.default.query('SELECT * FROM products');
             connection.release();
             return result.rows;
         }
@@ -46,7 +46,7 @@ class ProductOperations {
     async createProduct(tempProduct) {
         try {
             const connection = await database_1.default.connect();
-            const result = await database_1.default.query("INSERT INTO products (name,stock, price, category) VALUES ($1, $2, $3, $4) RETURNING *", [
+            const result = await database_1.default.query('INSERT INTO products (name,stock, price, category) VALUES ($1, $2, $3, $4) RETURNING *', [
                 tempProduct.name,
                 tempProduct.stock,
                 tempProduct.price,
@@ -64,7 +64,7 @@ class ProductOperations {
     async updateProduct(tempProduct) {
         try {
             const connection = await database_1.default.connect();
-            const result = await database_1.default.query("UPDATE products SET stock = $2, price = $3, category = $4 WHERE name = $1 RETURNING *", [
+            const result = await database_1.default.query('UPDATE products SET stock = $2, price = $3, category = $4 WHERE name = $1 RETURNING *', [
                 tempProduct.name,
                 tempProduct.stock,
                 tempProduct.price,
@@ -81,7 +81,7 @@ class ProductOperations {
     async deleteProduct(name) {
         try {
             const connection = await database_1.default.connect();
-            const result = await database_1.default.query("DELETE FROM products WHERE name = $1 RETURNING *", [name]);
+            const result = await database_1.default.query('DELETE FROM products WHERE name = $1 RETURNING *', [name]);
             connection.release();
             return result.rows[0];
         }
