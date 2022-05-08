@@ -19,7 +19,8 @@ from postman:
 I won't upload he dotenv file to github
 I used ESLINT but found weird errors so I turned it off
 important to note that I used jasmine not jasmine-ts you'll notice the difference in the test script
-### database setup
+
+### database setup and endpoints
 in psql run the following:
 
 database:
@@ -56,6 +57,37 @@ endpoints:
         edit status of order PUT: http://localhost:3000/orders
         delete order DELETE: http://localhost:3000/orders/:user_id
 
+### database schema and relationships
+#### buisness rules:
+    we have one many to many relationship between orders and products carts was created
+    
+    every user has one order
+    every order has one user
+    every order has one or more products
+    every product has one or more orders
+    every product has one category
+    every category has one or more products
+
+    USERS:
+        id SERIAL PRIMARY KEY
+        first_name VARCHAR(255) NOT NULL
+        last_name VARCHAR(255) NOT NULL
+        password VARCHAR(255) NOT NULL
+    PRODUCTS:
+        id SERIAL PRIMARY KEY
+        name VARCHAR(255) NOT NULL
+        price INTEGER NOT NULL
+        category VARCHAR(255)
+    ORDERS:
+        id SERIAL PRIMARY KEY
+        user_id INTEGER NOT NULL
+        status VARCHAR(255) NOT NULL
+        FOREIGN KEY (user_id) REFERENCES users(id)
+    CARTS:
+        id SERIAL PRIMARY KEY
+        FOREIGN KEY (order_id) REFERENCES orders(id)
+        FOREIGN KEY (product_id) REFERENCES products(id)
+        quantity INTEGER NOT NULL
 
 ### don't forget the "yarn" command to install the packages
 
