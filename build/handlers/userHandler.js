@@ -78,8 +78,8 @@ const deleteUser = async (req, res) => {
     }
 };
 const userOperaionsRoutes = (app) => {
-    app.get('/users/:first_name', getUser);
-    app.get('/users', getUsers);
+    app.get('/users/:first_name', verifyToken_1.verifyAuthToken, getUser);
+    app.get('/users', verifyToken_1.verifyAuthToken, getUsers);
     app.post('/users/signup', createUser);
     app.post('/users/login', login);
     app.put('/users', verifyToken_1.verifyAuthToken, updateUser);

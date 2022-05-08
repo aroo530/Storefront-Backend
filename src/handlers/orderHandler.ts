@@ -81,7 +81,7 @@ const checkStatus = async (
 };
 
 export const orderOperationsRouts = (app: express.Application) => {
-    app.get('/orders/:user_id', getOrder);
+    app.get('/orders/:user_id',verifyAuthToken, getOrder);
     app.get('/orders', getOrders);
     app.post('/orders', verifyAuthToken, createOrder);
     app.post('/orders/:user_id/products', verifyAuthToken, addProductToOrder);

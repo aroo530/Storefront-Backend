@@ -60,7 +60,7 @@ const checkStatus = async (req, res, next) => {
     }
 };
 const orderOperationsRouts = (app) => {
-    app.get('/orders/:user_id', getOrder);
+    app.get('/orders/:user_id', verifyToken_1.verifyAuthToken, getOrder);
     app.get('/orders', getOrders);
     app.post('/orders', verifyToken_1.verifyAuthToken, createOrder);
     app.post('/orders/:user_id/products', verifyToken_1.verifyAuthToken, addProductToOrder);

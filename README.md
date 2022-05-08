@@ -11,6 +11,9 @@ from postman:
     then -> continue
     import
 
+or access the public workspace (I know that I shouldn't leave the token in the workspace but this is an educational project)
+https://www.postman.com/science-geoscientist-29544415/workspace/project-2
+
 I won't upload he dotenv file to github
 I used ESLINT but found weird errors so I turned it off
 important to note that I used jasmine not jasmine-ts you'll notice the difference in the test script
