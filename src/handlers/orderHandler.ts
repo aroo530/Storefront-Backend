@@ -66,12 +66,12 @@ const addProductToOrder = async (
     const product: Product = await productOperations.getProduct(
         req.body.product_name
     );
-    const updatedOrder: Cart = await operations.addProductToOrder(
+    const cart: Cart = await operations.addProductToOrder(
         order.id!,
         product.id!,
         req.body.quantity
     );
-    res.json(updatedOrder);
+    res.json(cart);
 };
 const checkStatus = async (
     req: Request,

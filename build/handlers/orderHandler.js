@@ -46,8 +46,8 @@ const addProductToOrder = async (req, res) => {
     const user = await userOperations.getIdByFirstName(req.params.user_id);
     const order = await operations.getOrder(user.id);
     const product = await productOperations.getProduct(req.body.product_name);
-    const updatedOrder = await operations.addProductToOrder(order.id, product.id, req.body.quantity);
-    res.json(updatedOrder);
+    const cart = await operations.addProductToOrder(order.id, product.id, req.body.quantity);
+    res.json(cart);
 };
 const checkStatus = async (req, res, next) => {
     const user = await userOperations.getIdByFirstName(req.body.user_id);
