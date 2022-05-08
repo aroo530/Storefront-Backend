@@ -90,7 +90,10 @@ endpoints:
         quantity INTEGER NOT NULL
 
 ### don't forget the "yarn" command to install the packages
-
+    create migrations:
+    db-migrate --env dev up
+    reset migrations:
+    db-migrate --env dev reset
     "scripts": {
         "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess \"node ./dist/server.js\"",
         "tsc": "tsc",

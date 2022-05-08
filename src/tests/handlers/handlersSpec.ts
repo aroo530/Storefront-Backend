@@ -83,24 +83,42 @@ describe('testing all handlers', () => {
     });
     describe('testing GET endpoints', () => {
         it('should get all products', async () => {
-            const response = await request.get('/products').expect(200);
+            const response = await request
+                .get('/products')
+                .set('Authorization', token)
+                .expect(200);
         });
         it('should get a product', async () => {
-            const response = await request.get('/products/iphone').expect(200);
+            const response = await request
+                .get('/products/iphone')
+                .set('Authorization', token)
+                .expect(200);
             expect(response.body.name).toEqual('iphone');
         });
         it('should get all users', async () => {
-            const response = await request.get('/users').expect(200);
+            const response = await request
+                .get('/users')
+                .set('Authorization', token)
+                .expect(200);
         });
         it('should get a user', async () => {
-            const response = await request.get('/users/John').expect(200);
+            const response = await request
+                .get('/users/John')
+                .set('Authorization', token)
+                .expect(200);
             expect(response.body.first_name).toEqual('John');
         });
         it('should get all orders', async () => {
-            const response = await request.get('/orders').expect(200);
+            const response = await request
+                .get('/orders')
+                .set('Authorization', token)
+                .expect(200);
         });
         it('should get an order', async () => {
-            const response = await request.get('/orders/John').expect(200);
+            const response = await request
+                .get('/orders/John')
+                .set('Authorization', token)
+                .expect(200);
         });
         // it("should get a cart", async () => {
         //   const response = await request.get("/carts/2").expect(200);
