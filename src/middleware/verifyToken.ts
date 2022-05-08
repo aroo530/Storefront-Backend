@@ -8,7 +8,7 @@ export const verifyAuthToken = async (
     req: Request,
     res: Response,
     next: Function
-) => {
+): Promise<void> => {
     try {
         const authorizationHeader = req.headers.authorization!;
         const token = authorizationHeader.split(' ')[1];

@@ -1,4 +1,5 @@
 import client from '../database';
+import { Cart } from './carts';
 //I used get instead of index and show because this way is more clear
 export type Order = {
     id?: number;
@@ -11,7 +12,7 @@ export class OrderOperations {
         order_id: number,
         productId: number,
         quantity: number
-    ) {
+    ): Promise<Cart> {
         try {
             const connection = await client.connect();
             const result = await client.query(

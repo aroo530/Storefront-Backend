@@ -6,23 +6,23 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 const ROUNDS: number = Number(process.env.SALT_ROUNDS);
-const BCRYPT_PASSWORD = process.env.BCRYPT_PASSWORD;
+const BCRYPT_PASSWORD: string = String(process.env.BCRYPT_PASSWORD);
 dotenv.config();
 
 const operations = new UserOperations();
 
-const getUser = async (req: Request, res: Response) => {
+const getUser = async (req: Request, res: Response): Promise<void> => {
     const first_name: string = req.params.first_name;
     const user: User = await operations.getUser(first_name);
     res.json(user);
 };
 
-const getUsers = async (req: Request, res: Response) => {
+const getUsers = async (req: Request, res: Response): Promise<void> => {
     const users: User[] = await operations.getUsers();
     res.json(users);
 };
 
-const createUser = async (req: Request, res: Response) => {
+const createUser = async (req: Request, res: Response): Promise<void> => {
     const tempUser: User = {
         first_name: req.body.first_name,
         last_name: req.body.last_name,
@@ -36,7 +36,7 @@ const createUser = async (req: Request, res: Response) => {
     res.status(201).json(await createToken(newUser));
 };
 
-const login = async (req: Request, res: Response) => {
+const login = async (req: Request, res: Response): Promise<void> => {
     try {
         const { first_name, password } = req.body;
         //find user
@@ -65,7 +65,7 @@ const login = async (req: Request, res: Response) => {
         res.status(500).json({ message: 'Something went wrong' });
     }
 };
-const updateUser = async (req: Request, res: Response) => {
+const updateUser = async (req: Request, res: Response): Promise<void> => {
     const password: string = await bcrypt.hash(
         req.body.password + process.env.BCRYPT_PASSWORD!,
         ROUNDS
@@ -75,7 +75,7 @@ const updateUser = async (req: Request, res: Response) => {
     res.json(updatedUser);
 };
 
-const deleteUser = async (req: Request, res: Response) => {
+const deleteUser = async (req: Request, res: Response): Promise<void> => {
     try {
         const first_name: string = req.params.first_name;
         await operations.deleteUser(first_name);
@@ -86,9 +86,9 @@ const deleteUser = async (req: Request, res: Response) => {
     }
 };
 
-export const userOperaionsRoutes = (app: express.Application) => {
-    app.get('/users/:first_name',verifyAuthToken, getUser);
-    app.get('/users',verifyAuthToken, getUsers);
+export const userOperaionsRoutes = (app: express.Application): void => {
+    app.get('/users/:first_name', verifyAuthToken, getUser);
+    app.get('/users', verifyAuthToken, getUsers);
     app.post('/users/signup', createUser);
     app.post('/users/login', login);
     app.put('/users', verifyAuthToken, updateUser);

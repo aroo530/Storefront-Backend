@@ -7,7 +7,7 @@ import { Product, ProductOperations } from '../models/products';
 const operations: OrderOperations = new OrderOperations();
 const userOperations: UserOperations = new UserOperations();
 const productOperations = new ProductOperations();
-const getOrder = async (req: Request, res: Response) => {
+const getOrder = async (req: Request, res: Response): Promise<void> => {
     const user: User = await userOperations.getIdByFirstName(
         req.params.user_id
     );
@@ -15,12 +15,12 @@ const getOrder = async (req: Request, res: Response) => {
     res.json(order);
 };
 
-const getOrders = async (req: Request, res: Response) => {
+const getOrders = async (req: Request, res: Response): Promise<void> => {
     const orders: Order[] = await operations.getAllOrders();
     res.json(orders);
 };
 
-const createOrder = async (req: Request, res: Response) => {
+const createOrder = async (req: Request, res: Response): Promise<void> => {
     const getId: User = await userOperations.getIdByFirstName(req.body.user_id);
     if (getId) {
         let order: Order = req.body;
@@ -32,7 +32,10 @@ const createOrder = async (req: Request, res: Response) => {
     }
 };
 
-const updateOrderStatus = async (req: Request, res: Response) => {
+const updateOrderStatus = async (
+    req: Request,
+    res: Response
+): Promise<void> => {
     const getId: User = await userOperations.getIdByFirstName(req.body.user_id);
     let order: Order = req.body;
     order.user_id = getId.id!;
@@ -41,7 +44,7 @@ const updateOrderStatus = async (req: Request, res: Response) => {
     res.json(updatedOrder);
 };
 
-const deleteOrder = async (req: Request, res: Response) => {
+const deleteOrder = async (req: Request, res: Response): Promise<void> => {
     const getId: User = await userOperations.getIdByFirstName(
         req.params.user_id
     );
@@ -49,7 +52,10 @@ const deleteOrder = async (req: Request, res: Response) => {
     res.json('Order deleted');
 };
 
-const addProductToOrder = async (req: Request, res: Response) => {
+const addProductToOrder = async (
+    req: Request,
+    res: Response
+): Promise<void> => {
     //we will get the order id from the user id
     const user: User = await userOperations.getIdByFirstName(
         req.params.user_id
@@ -70,7 +76,7 @@ const checkStatus = async (
     req: Request,
     res: Response,
     next: express.NextFunction
-) => {
+): Promise<void> => {
     const user: User = await userOperations.getIdByFirstName(req.body.user_id);
     const order: Order = await operations.getOrder(user.id!);
     if (order.status === 'active') {
@@ -80,8 +86,8 @@ const checkStatus = async (
     }
 };
 
-export const orderOperationsRouts = (app: express.Application) => {
-    app.get('/orders/:user_id',verifyAuthToken, getOrder);
+export const orderOperationsRouts = (app: express.Application): void => {
+    app.get('/orders/:user_id', verifyAuthToken, getOrder);
     app.get('/orders', getOrders);
     app.post('/orders', verifyAuthToken, createOrder);
     app.post('/orders/:user_id/products', verifyAuthToken, addProductToOrder);

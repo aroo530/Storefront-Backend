@@ -9,7 +9,7 @@ const address: string = 'http://localhost:3000';
 
 app.use(bodyParser.json());
 
-app.get('/', function (req: Request, res: Response) {
+app.get('/', function (req: Request, res: Response): void {
     res.send('Hello World!');
 });
 
