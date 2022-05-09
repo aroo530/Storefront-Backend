@@ -14,23 +14,38 @@ const BCRYPT_PASSWORD = String(process.env.BCRYPT_PASSWORD);
 dotenv_1.default.config();
 const operations = new users_1.UserOperations();
 const getUser = async (req, res) => {
-    const first_name = req.params.first_name;
-    const user = await operations.getUser(first_name);
-    res.json(user);
+    try {
+        const first_name = req.params.first_name;
+        const user = await operations.getUser(first_name);
+        res.json(user);
+    }
+    catch (error) {
+        res.status(500).json({ message: error });
+    }
 };
 const getUsers = async (req, res) => {
-    const users = await operations.getUsers();
-    res.json(users);
+    try {
+        const users = await operations.getUsers();
+        res.json(users);
+    }
+    catch (error) {
+        res.status(500).json({ message: error });
+    }
 };
 const createUser = async (req, res) => {
-    const tempUser = {
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        password: await bcrypt_1.default.hash(req.body.password + BCRYPT_PASSWORD, ROUNDS),
-    };
-    //we pass the user object to the createUser function to save user in the database
-    const newUser = await operations.createUser(tempUser);
-    res.status(201).json(await createToken(newUser));
+    try {
+        const tempUser = {
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            password: await bcrypt_1.default.hash(req.body.password + BCRYPT_PASSWORD, ROUNDS),
+        };
+        //we pass the user object to the createUser function to save user in the database
+        const newUser = await operations.createUser(tempUser);
+        res.status(201).json(await createToken(newUser));
+    }
+    catch (error) {
+        res.status(500).json({ message: error });
+    }
 };
 const login = async (req, res) => {
     try {
@@ -61,10 +76,15 @@ const login = async (req, res) => {
     }
 };
 const updateUser = async (req, res) => {
-    const password = await bcrypt_1.default.hash(req.body.password + process.env.BCRYPT_PASSWORD, ROUNDS);
-    const first_name = req.body.first_name;
-    const updatedUser = await operations.updateUser(password, first_name);
-    res.json(updatedUser);
+    try {
+        const password = await bcrypt_1.default.hash(req.body.password + process.env.BCRYPT_PASSWORD, ROUNDS);
+        const first_name = req.body.first_name;
+        const updatedUser = await operations.updateUser(password, first_name);
+        res.json(updatedUser);
+    }
+    catch (error) {
+        res.status(500).json({ message: error });
+    }
 };
 const deleteUser = async (req, res) => {
     try {
