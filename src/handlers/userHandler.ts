@@ -9,7 +9,7 @@ const ROUNDS: number = Number(process.env.SALT_ROUNDS);
 const BCRYPT_PASSWORD: string = String(process.env.BCRYPT_PASSWORD);
 dotenv.config();
 
-const operations = new UserOperations();
+const operations: UserOperations = new UserOperations();
 
 const getUser = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -114,6 +114,6 @@ export const userOperaionsRoutes = (app: express.Application): void => {
     app.delete('/users/:first_name', verifyAuthToken, deleteUser);
 };
 
-const createToken = async (user: any) => {
+const createToken = async (user: any): Promise<string> => {
     return jwt.sign(user, process.env.TOKEN_SECRET!);
 };
