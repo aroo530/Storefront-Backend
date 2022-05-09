@@ -1,8 +1,4 @@
-good day <br>
-let's get into it
-first of all I implemented put and delete methods feel free to ignore them
-
-I changed index and show to getX and getXs methods made more sense
+good day <3 <br>
 
 there are a lot of endpoints so use the postman link to test them:
 
@@ -17,7 +13,6 @@ from postman:
     import
 
 I won't upload he dotenv file to github
-I used ESLINT but found weird errors so I turned it off
 important to note that I used jasmine not jasmine-ts you'll notice the difference in the test script
 
 ### database setup and endpoints
