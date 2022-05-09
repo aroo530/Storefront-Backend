@@ -12,28 +12,40 @@ dotenv.config();
 const operations = new UserOperations();
 
 const getUser = async (req: Request, res: Response): Promise<void> => {
-    const first_name: string = req.params.first_name;
-    const user: User = await operations.getUser(first_name);
-    res.json(user);
+    try {
+        const first_name: string = req.params.first_name;
+        const user: User = await operations.getUser(first_name);
+        res.json(user);
+    } catch (error) {
+        res.status(500).json({ message: error });
+    }
 };
 
 const getUsers = async (req: Request, res: Response): Promise<void> => {
-    const users: User[] = await operations.getUsers();
-    res.json(users);
+    try {
+        const users: User[] = await operations.getUsers();
+        res.json(users);
+    } catch (error) {
+        res.status(500).json({ message: error });
+    }
 };
 
 const createUser = async (req: Request, res: Response): Promise<void> => {
-    const tempUser: User = {
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        password: await bcrypt.hash(
-            req.body.password + BCRYPT_PASSWORD,
-            ROUNDS
-        ),
-    };
-    //we pass the user object to the createUser function to save user in the database
-    const newUser: User = await operations.createUser(tempUser);
-    res.status(201).json(await createToken(newUser));
+    try {
+        const tempUser: User = {
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            password: await bcrypt.hash(
+                req.body.password + BCRYPT_PASSWORD,
+                ROUNDS
+            ),
+        };
+        //we pass the user object to the createUser function to save user in the database
+        const newUser: User = await operations.createUser(tempUser);
+        res.status(201).json(await createToken(newUser));
+    } catch (error) {
+        res.status(500).json({ message: error });
+    }
 };
 
 const login = async (req: Request, res: Response): Promise<void> => {
@@ -66,13 +78,20 @@ const login = async (req: Request, res: Response): Promise<void> => {
     }
 };
 const updateUser = async (req: Request, res: Response): Promise<void> => {
-    const password: string = await bcrypt.hash(
-        req.body.password + process.env.BCRYPT_PASSWORD!,
-        ROUNDS
-    );
-    const first_name: string = req.body.first_name;
-    const updatedUser: User = await operations.updateUser(password, first_name);
-    res.json(updatedUser);
+    try {
+        const password: string = await bcrypt.hash(
+            req.body.password + process.env.BCRYPT_PASSWORD!,
+            ROUNDS
+        );
+        const first_name: string = req.body.first_name;
+        const updatedUser: User = await operations.updateUser(
+            password,
+            first_name
+        );
+        res.json(updatedUser);
+    } catch (error) {
+        res.status(500).json({ message: error });
+    }
 };
 
 const deleteUser = async (req: Request, res: Response): Promise<void> => {
