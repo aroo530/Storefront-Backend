@@ -31,19 +31,20 @@ const getOrders = async (req: Request, res: Response): Promise<void> => {
 
 const createOrder = async (req: Request, res: Response): Promise<void> => {
     try {
-    const getId: User = await userOperations.getIdByFirstName(req.body.user_id);
-    if (getId) {
-        let order: Order = req.body;
-        order.user_id = getId.id!;
-        const newOrder: Order = await operations.createOrder(order);
-        res.json(newOrder);
-    } else {
-        res.status(404).json({ message: 'User not found' });
+        const getId: User = await userOperations.getIdByFirstName(
+            req.body.user_id
+        );
+        if (getId) {
+            let order: Order = req.body;
+            order.user_id = getId.id!;
+            const newOrder: Order = await operations.createOrder(order);
+            res.json(newOrder);
+        } else {
+            res.status(404).json({ message: 'User not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error });
     }
-    
-} catch (error) {
-    res.status(500).json({ message: error });
-}
 };
 
 const updateOrderStatus = async (
