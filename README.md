@@ -1,4 +1,4 @@
-good day sir/mam
+good day <br>
 let's get into it
 first of all I implemented put and delete methods feel free to ignore them
 
