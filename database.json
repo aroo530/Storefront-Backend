@@ -1,16 +1,16 @@
 {
     "dev": {
         "driver": "pg",
-        "host": "localhost",
-        "database": "shop",
-        "user": "aroo",
-        "password": "0096"
+        "host": { "ENV": "POSTGRES_HOST" },
+        "database": { "ENV": "POSTGRES_DB" },
+        "user": { "ENV": "POSTGRES_USER" },
+        "password": { "ENV": "POSTGRES_PASSWORD" }
     },
     "test": {
         "driver": "pg",
-        "host": "localhost",
-        "database": "shop_test",
-        "user": "aroo",
-        "password": "0096"
+        "host": { "ENV": "POSTGRES_HOST" },
+        "database": { "ENV": "TEST_POSTGRES_DB" },
+        "user": { "ENV": "POSTGRES_USER" },
+        "password": { "ENV": "POSTGRES_PASSWORD" }
     }
 }
