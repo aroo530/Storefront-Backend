@@ -1,7 +1,16 @@
 good day <3 <br>
 
+Project Summary<br>
+Imagine that you are a web developer at a small company. The company stakeholders have decided they want to set up an online store to make their great product ideas available for purchase -- and they want you and your co-worker to build it.
+<br>
+The stakeholders have put together a list of requirements for this online store. Your co-worker will be building the frontend and you will be supplying the JavaScript API. The requirements have been collected into requirements document.
+<br>
+Your job is to architect the database, its tables and columns to fulfill the data requirements and craft a RESTful API that exposes that information to the frontend developer.
+<br>
+Your application needs to be ready for beta tests, so it needs to have tests, keep user information secure, and provide user authentication tokens that are ready to integrate with the frontend.
+<br>
 there are a lot of endpoints so use the postman link to test them:
-
+<br>
 access the public workspace (I know that I shouldn't leave the token in the workspace but this is an educational project)
 https://www.postman.com/science-geoscientist-29544415/workspace/project-2
 
