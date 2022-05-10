@@ -8,7 +8,7 @@ The stakeholders have put together a list of requirements for this online store.
 Your job is to architect the database, its tables and columns to fulfill the data requirements and craft a RESTful API that exposes that information to the frontend developer.
 <br>
 Your application needs to be ready for beta tests, so it needs to have tests, keep user information secure, and provide user authentication tokens that are ready to integrate with the frontend.
-<br>
+<br><br>
 there are a lot of endpoints so use the postman link to test them:
 <br>
 access the public workspace (I know that I shouldn't leave the token in the workspace but this is an educational project)
