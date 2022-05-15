@@ -12,7 +12,7 @@ Your application needs to be ready for beta tests, so it needs to have tests, ke
 there are a lot of endpoints so use the postman link to test them:
 <br>
 access the public workspace (I know that I shouldn't leave the token in the workspace but this is an educational project)
-https://www.postman.com/science-geoscientist-29544415/workspace/project-2
+https://postman.com/science-geoscientist-29544415/workspace/projects
 
 https://www.getpostman.com/collections/aa6cae252931d33c7298
 from postman: 
