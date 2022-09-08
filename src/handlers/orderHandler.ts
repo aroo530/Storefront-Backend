@@ -8,6 +8,7 @@ import { Cart } from '../models/carts';
 const operations: OrderOperations = new OrderOperations();
 const userOperations: UserOperations = new UserOperations();
 const productOperations = new ProductOperations();
+
 const getOrder = async (req: Request, res: Response): Promise<void> => {
     try {
         const user: User = await userOperations.getIdByFirstName(
@@ -129,3 +130,4 @@ export const orderOperationsRouts = (app: express.Application): void => {
     app.put('/orders', verifyAuthToken, checkStatus, updateOrderStatus);
     app.delete('/orders/:user_id', verifyAuthToken, deleteOrder);
 };
+ 

@@ -10,8 +10,8 @@
     "jasmine-init": "jasmine init",
     "jasmine": "jasmine",
     "build": "npx tsc",
-    "TSstart": "nodemon src/server.ts",
-    "JSstart": "npm run build && nodemon build/server.js",
+    "Tstart": "nodemon src/server.ts",
+    "Jstart": "npm run build && nodemon build/server.js",
     "lint": "eslint src/**/*.ts",
     "prettier": "prettier --config .prettierrc.json src/**/*.ts --write"
   },
